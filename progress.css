@@ -1,0 +1,105 @@
+
+.progress {
+  background: #ccc;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress img {
+  width: 60%;
+  height: 60%;
+  display: block;
+  position: absolute;
+  margin: auto;
+  top: 0; bottom: 0;
+  right: 0; left: 0;
+  background: white;
+  border-radius: 50%;
+}
+
+.progress span {
+  width: 100%;
+  line-height: 1.2;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.progress div {
+  width: 0;
+  height: 0;
+  position: absolute;
+  border: 25px solid #999;
+}
+
+.progress .progress-0 {
+  left: 50%;
+  bottom: 50%;
+}
+
+.progress .progress-0-pos {
+  border-right: none;
+  border-bottom-color: transparent !important;
+}
+
+.progress .progress-0-neg {
+  border-top: none;
+  border-left-color: transparent !important;
+}
+
+.progress .progress-1 {
+  top: 50%;
+  left: 50%;
+}
+
+.progress .progress-1-pos {
+  border-bottom: none;
+  border-left-color: transparent !important;
+}
+
+.progress .progress-1-neg {
+  border-right: none;
+  border-top-color: transparent !important;
+}
+
+.progress .progress-2 {
+  right: 50%;
+  top: 50%;
+}
+
+.progress .progress-2-pos {
+  border-left: none;
+  border-top-color: transparent !important;
+}
+
+.progress .progress-2-neg {
+  border-bottom: none;
+  border-right-color: transparent !important;
+}
+
+.progress .progress-3 {
+  bottom: 50%;
+  right: 50%;
+}
+
+.progress .progress-3-pos {
+  border-top: none;
+  border-right-color: transparent !important;
+}
+
+.progress .progress-3-neg {
+  border-left: none;
+  border-bottom-color: transparent !important;
+}
+
+.progress-debug {
+  overflow: visible;
+  border-radius: 0;
+}
+
+.progress-debug img {
+  display: none;
+}

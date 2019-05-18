@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>progress</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <a href="https://github.com/befizal/progress">Repository</a>
+    <div id="ct-normal">
+      <p>Progress progress from 50% to 75% (bottom left slice of the pie).</p>
+    </div>
+    <div id="ct-debug">
+      <p>Same as above with all borders visible (yellow = transparent, green = zero width).</p>
+    </div>
+    <style>
+      body {
+        background: #ccc;
+        font: normal 16px Arial;
+      }
+      .frame {
+        width: 66px;
+        height: 80px;
+        font-size: .85em;
+        background: white;
+        padding-top: 4px;
+        padding-left: 4px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        vertical-align: top;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+      }
+      .frame .pie {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 4px;
+        right: -11px;
+        border: 1px solid red;
+        border-radius: 50%;
+      }
+      .frame .slice {
+        width: 0;
+        height: 0;
+        top: 30px;
+        right: 15px;
+        position: absolute;
+        border: 25px solid black;
+        border-top-color: transparent;
+        border-left: none;
+      }
+      .frame-debug .slice {
+        border-left-width: 25px;
+        border-left-style: solid;
+        border-top-color: yellow;
+        border-bottom-color: #555;
+        border-left-color: #8bc34a;
+        border-right-color: black;
+      }
+    </style>
+    <script>
+      r = 25; // radius
+      btw = "border-top-width";
+      brw = "border-right-width";
+
+      fill("normal");
+      fill("debug");
+
+      function fill (id) {
+        var i, pct, deg, rad, tan;
+        var txt, slice, progress;
+        var ct = document.getElementById("ct-" + id);
+        var cls = "frame";
+        if (id === "debug") {
+          cls += " frame-debug";
+        }
+        for (i = 0; i <= 10; i++) {
+          pct = 0.5 + (i * 2.5) / 100;
+          deg = (pct * 360) % 45;
+          rad = deg * Math.PI / 180;
+          tan = Math.tan(rad);
+          txt = Math.floor(pct * 100) + "%";
+          txtNode = document.createTextNode(txt);
+          pie = document.createElement("div");
+          slice = document.createElement("div");
+          progress = document.createElement("div");
+          pie.setAttribute("class", "pie");
+          slice.setAttribute("class", "slice");
+          progress.setAttribute("class", cls);
+          ct.appendChild(progress);
+          progress.appendChild(txtNode);
+          progress.appendChild(slice);
+          progress.appendChild(pie);
+          if (pct < 0.625) {
+            slice.style[brw] = Math.round(r * tan) + "px";
+            slice.style[btw] = r + "px";
+          } else if (pct < 0.75) {
+            slice.style[brw] = r + "px";
+            slice.style[btw] = Math.round(r - r * tan) + "px";
+          } else {
+            slice.style[brw] = r + "px";
+            slice.style[btw] = 0 + "px";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
